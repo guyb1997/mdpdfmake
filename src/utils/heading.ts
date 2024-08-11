@@ -20,6 +20,7 @@ export const pdfMakeHeading = (
   if (push) {
     content.push({
       text: token.text,
+      id: token.text.replace(/\s+/g, "-").toLowerCase(),
       fontSize,
       bold,
       margin,
@@ -29,6 +30,7 @@ export const pdfMakeHeading = (
 
   return {
     text: token.text,
+    id: token.text.replace(/\s+/g, "-").toLowerCase(),
     fontSize,
     bold,
     margin,
