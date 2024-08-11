@@ -8,6 +8,11 @@ export const pdfMakeImage = async (
   push: boolean = true
 ) => {
   try {
+    if (token.href.startsWith("data:image")) {
+      if (push) content.push({ image: token.href, width: 150, margin: [0, 5, 0, 5] });
+      return { image: token.href, width: 150, margin: [0, 5, 0, 5] };
+    }
+
     await axios.head(token.href);
     const base64Image = await imageToBase64(token.href);
 
