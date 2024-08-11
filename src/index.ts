@@ -80,6 +80,24 @@ async function mdpdfmake(
         content.push({ text: "\n" });
         break;
 
+      case "table":
+        content.push(
+          {
+            layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              body: [
+                token.header,
+                ...token.rows,
+              ]
+            }
+          }
+          );
+          break;
+
+
       default:
         console.warn(`Unhandled token type: ${token.type}`);
     }
