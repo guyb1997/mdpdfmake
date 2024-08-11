@@ -24,7 +24,11 @@ export const pdfMakeText = async (
           };
 
           if (childToken.type === "link") {
-            fragment.link = childToken.href;
+            if (childToken.href.startsWith("#")) {
+              fragment.linkToDestination = childToken.href.substring(1);
+            } else {
+              fragment.link = childToken.href;
+            }
           }
 
           textFragments.push(fragment);
